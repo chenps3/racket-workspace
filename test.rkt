@@ -9,3 +9,8 @@
         (else (- a))))
 
 (define square-v2 (lambda (x) (* x x)))
+
+(define (test x)
+  (+ (let ((x 3))
+       (+ x (* x 10)))
+     x))
