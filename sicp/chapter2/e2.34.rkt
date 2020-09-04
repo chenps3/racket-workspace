@@ -2,12 +2,12 @@
 (define (accumulate op init seq)
   (if (null? seq)
       init
-      (op (car (seq))
+      (op (car seq)
           (accumulate op init (cdr seq)))))
 
 ;e2.34
 (define (horner-eval x coefficient-sequence)
-  (accumulate (lambda (this-coeff higher-terms) (+ this-coeff (* x (horner-eval x higher-terms))))
+  (accumulate (lambda (this-coeff higher-terms) (+ this-coeff (* x higher-terms)))
               0
               coefficient-sequence))
 
