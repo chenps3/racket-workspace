@@ -85,9 +85,13 @@
 
 ;e2.40
 (define (unique-pairs n)
-  (filter (lambda (x) (> (car x) (cadr x))) (all-pair-x n)))
+  (flatmap (lambda (i)
+             (map (lambda (j) (list i j))
+                  (enumerate-interval 1 (- i 1))))
+           (enumerate-interval 1 n)))
 
 (define (prime-sum-pairs-new n)
-  (map make-pair-sum (prime-sum-pair-x n)))
-;(unique-pairs 10)
+  (map make-pair-sum (filter prime-sum? (unique-pairs n))))
+
+(prime-sum-pairs-new 10)
 
