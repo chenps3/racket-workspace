@@ -45,8 +45,10 @@
 (put 'deriv '* deriv-product)
 
 ;c
+;略
 
 ;d
+;put方法变一下参数顺序
 
 
 
