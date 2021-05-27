@@ -1,0 +1,30 @@
+#lang sicp
+
+(define (make-account balance secret)
+  (let ((wrong-pw-cnt 0))
+    (define (withdraw amount)
+    (if (>= balance amount)
+        (begin (set! balance (- balance amount))
+               balance)
+        "余额不足"))
+  (define (deposit amount)
+    (set! balance (+ balance amount))
+    balance)
+  (define (call-the-cops)
+    (error "call the cops!"))
+  (define (dispatch pw m)
+    (if (eq? pw secret)
+        (begin (set! wrong-pw-cnt 0)
+               (cond ((eq? m 'withdraw) withdraw)
+                     ((eq? m 'deposit) deposit)
+                     (else (error "未知操作"))))
+        (begin (set! wrong-pw-cnt (+ wrong-pw-cnt 1))
+               (if (or (> wrong-pw-cnt 7) (= wrong-pw-cnt 7))
+                   (call-the-cops)
+                   (error "密码错误")))))
+  dispatch))
+  
+(define acc (make-account 100 '123456))
+
+;((acc '12345 'withdraw) 40)
+
